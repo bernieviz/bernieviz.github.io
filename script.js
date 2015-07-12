@@ -80,8 +80,8 @@ function ready(error,raw){
   .attr("x",470)
   .attr("dy",15)
   .attr("text-anchor","middle")
-  // .append("tspan")
-  // .text("asdsadasdasdasd")
+  .append("tspan")
+  .text("asdsadasdasdasd")
 
   lineTspan.selectAll(".blurb-tspan")
   .data(function(d){return d})
@@ -93,9 +93,10 @@ function ready(error,raw){
 
   })
 
-  // d3.selectAll(".line-tspan")
-  // .append("tspan")
-  // .text("asadasdasdasdas")
+  d3.selectAll(".line-tspan")
+  .append("tspan")
+  .text("asadasdasdasdas")
+  
   // .append()
   // .tspans(function(d){
   //   return d3.wordwrap(allText, 100);
