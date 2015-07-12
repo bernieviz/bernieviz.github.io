@@ -7,9 +7,9 @@ d3.json(file,ready)
 Global.margin = margin = {top: 20, right: 10, bottom: 40, left: 10};
 
 Global.width = width = 960 - margin.left - margin.right;
-Global.height = height = 900 - margin.top - margin.bottom;
+Global.height = height = 500 - margin.top - margin.bottom;
 
-Global.svg = d3.select(".d3-container").append("svg")
+Global.svg = svg = d3.select(".d3-container").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -18,13 +18,15 @@ Global.svg = d3.select(".d3-container").append("svg")
 Global.xScale = d3.scale.linear()
     .range([0, width])
 
-var timeline = svg.append("line")
-  .attr("x1", 0)
-  .attr("y1", height/2)
-  .attr("x2", width)
-  .attr("y2", height/2)
-  .attr("stroke-width", 2)
-  .attr("stroke", "black");
+
+
+// var timeline = svg.append("line")
+//   .attr("x1", 0)
+//   .attr("y1", height/2)
+//   .attr("x2", width)
+//   .attr("y2", height/2)
+//   .attr("stroke-width", 2)
+//   .attr("stroke", "black");
 }
 
 function ready(error,raw){
@@ -32,6 +34,7 @@ function ready(error,raw){
   var height =Global.height
   var width =Global.width
   var margin =Global.margin
+  var xScale = Global.xScale
 
   console.log("ready")
   data = raw.map(function(o){
@@ -47,16 +50,13 @@ function ready(error,raw){
   Global.xScale
   .domain(d3.extent(data,ƒ("dateValue")))
 
-
-
-
   // ********** Background Text ***************
   // ******************************************
 
   var allText = Global.allText = data.map(function(o,i){return "~"+o.blurb}).join(' ')
 
   var currentBlurb = -1
-  var lineData = d3.wordwrap(Global.allText,100)
+  var lineData = d3.wordwrap(Global.allText,150)
   .map(function(str){
     console.log(str)
     var returnArray = str.split("~").map(function(str,i){return [i+currentBlurb,str]})
@@ -69,6 +69,8 @@ function ready(error,raw){
   // var allText = allTextArray
   var text = svg.append('g.text-group')
   .append('text.all-text')
+  .attr("transform", "scale(1,.8)")
+
   // .attr('opacity',.5)
 
 //Each line will have an array of arrays eg. [[1,"asdfsdf"],[2"sdfsdfsdf"]]
@@ -90,52 +92,84 @@ function ready(error,raw){
   .attr("class",function(d){ return "blurb-tspan blurb-"+d[0]})
   .text(function(d){
     return d[1]
-
   })
 
-  // d3.selectAll(".line-tspan")
-  // .append("tspan")
-  // .text("asadasdasdasdas")
-  
-  // .append()
-  // .tspans(function(d){
-  //   return d3.wordwrap(allText, 100);
-  // });
+var timeline = {
+  y :2*(height/3),
+  height: 15
+}
+  // Timeline
+  svg.append('rect')
+    .attr('x',0)
+    .attr('y',timeline.y)
+    .attr('height',timeline.height)
+    .attr('width',xScale(414))
+    .attr("fill","green")  
 
-  // d3.selectAll('.all-text tspan')
-  // .attr("text-anchor","middle")
-  // .attr('x',width/2)
-  // addTspans()
-  // ******************************************
+  svg.append('rect')
+    .attr('x',0)
+    .attr('y',timeline.y)
+    .attr('height',timeline.height)
+    .attr('width',xScale(312))
+    .attr("fill","blue")
+
+  svg.append('rect')
+    .attr('x',0)
+    .attr('y',timeline.y)
+    .attr('height',timeline.height)
+    .attr('width',xScale(120))
+    .attr("fill","red")
+
+
 
   var items = svg.selectAll('.items')
     .data(data)
     .enter()
     .append('g')
 
-  items.append('circle')
-    .attr('cx',function(d){return Global.xScale(d.dateValue)})
-    .attr('cy',height/2)
-    .attr('r',10)
+  items.append('rect')
+    .attr('x',function(d){return Global.xScale(d.dateValue)})
+    .attr('y',timeline.y)
+    .attr('height',timeline.height)
+    .attr('width',2)
+    // .attr('r',10)
     .on("mouseover", itemMouseover)
     .on("mouseout", itemMouseout)
+
+    svg.append("text")
+    .attr("class","large-date")
+    .attr("x",200)
+    .attr("y",200)
+    .attr("opacity",0)
+    .text("")
+
+
+
+
 }
 
 
 
 function itemMouseover(d,i){
+  console.log(d.date)
+  d3.select(".large-date").text(d.date)
+  d3.select(".large-date").transition().duration(750).attr('opacity',1)
 
   var scaleFactor = 1.45
   var translateFactor = (scaleFactor - 1) * -470
 
-  var howFarDownToShift = 250 - (i * 53)
+  var howFarDownToShift = 100 - (i * 27)
   d3.select('.text-group')
   .transition().duration(750)
-  .attr("transform","translate("+translateFactor+","+howFarDownToShift+") scale("+scaleFactor+","+scaleFactor+")")
+  // .attr("transform","translate("+translateFactor+","+howFarDownToShift+") scale("+scaleFactor+","+scaleFactor+")")
+  .attr("transform","translate(0,"+howFarDownToShift+") scale(1,"+scaleFactor+")")
+
+
+  d3.selectAll('.blurb-tspan').attr('fill','#DFDFDF') 
 
   d3.selectAll('.blurb-tspan:not(.blurb-'+i+')')
   .transition().duration(750)
-  .attr('fill','blue')
+  .attr('fill','#EFEFEF') //Light Grey
 
   d3.selectAll('.blurb-'+i)
   .transition().duration(750)
@@ -145,6 +179,8 @@ function itemMouseover(d,i){
 
 function itemMouseout(d,i){
   var dur = 1500
+
+  d3.select(".large-date").transition().duration(dur).attr('opacity',0)
   d3.select('.text-group').transition().duration(dur).attr("transform","translate(0,0) scale(1,1)")
 
   // d3.selectAll('.blurb-tspan').transition()
@@ -156,7 +192,7 @@ function itemMouseout(d,i){
   d3.selectAll('.blurb-tspan')
   .transition().duration(dur)
   // .attr('opacity',.5)
-  .attr('fill',"grey")
+  .attr('fill',"#DFDFDF")
   // d3.select('.text-group').transition().attr("transform","scale(1,1)")
 }
 
@@ -176,34 +212,4 @@ function repeat(pattern, count) {
         count >>= 1, pattern += pattern;
     }
     return result + pattern;
-}
-
-
-function addTspans(){
-  var blurbCounter = -1
-  originalHtml = d3.selectAll('.all-text tspan')[0].map(function(o){
-    var tildes = 0
-    var newTextContent = ""
-    var html = "<tspan x='470' dy='15' text-anchor='middle'>filler filler<tspan class='blurb-"+blurbCounter+"'>"
-
-    // console.log(o.textContent[i-1])
-    for (var i = 0, len = o.textContent.length; i < len; i++) {
-      if (o.textContent[i] === "~"){
-        blurbCounter ++
-        tildes ++
-        newTextContent += "</tspan><tspan class='blurb-"+blurbCounter+"'>"
-      } else {
-        newTextContent += o.textContent[i]
-      }
-    }
-    html += newTextContent
-    // html += repeat("</tspan>",tildes+1)
-    html += "</tspan>"
-    html += "filler filler</tspan>"
-    // console.log("html",html)
-    return html
-
-  }).join('')
-  // console.log("originalHtml",originalHtml)
-  d3.select('.all-text').html(originalHtml)
 }
