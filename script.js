@@ -12,7 +12,7 @@ window.onload = function() {
   };
 
   Global.width = width = 960 - margin.left - margin.right;
-  Global.height = height = 815 - margin.top - margin.bottom;
+  Global.height = height = 600 - margin.top - margin.bottom;
 
   // Global.svg = svg = d3.select(".d3-container").append("svg")
   //   .attr("class", "main-svg")
@@ -23,6 +23,21 @@ window.onload = function() {
 
   Global.xScale = d3.scale.linear()
     .range([0, width])
+  
+  d3.xml("sanders-logo.svg", "image/svg+xml", function(xml) {
+    // console.log(xml)
+    Global.test = d3.select(xml.documentElement).select(".logo")
+    document.querySelector('.main-svg').appendChild(xml.documentElement);
+    d3.select('.bernie-svg')
+    .attr('x',100)
+    .attr('y',500)
+
+    d3.select('.logo')
+    .attr("transform","scale(.5,.5)")
+    // .attr('width',100)
+    // d3.select('body').append(xml.documentElement);
+
+  });
 
 
 }
@@ -49,7 +64,7 @@ function addRedditLink() {
 
   var text = svg.append("text")
     .attr("x", 450 + 280)
-    .attr("y", 100)
+    .attr("y", 500)
 
     text.append("tspan")
     .attr('font-family', 'FontAwesome')
@@ -72,6 +87,7 @@ function ready(error, raw) {
   var margin = Global.margin
   var xScale = Global.xScale
 
+  // svg.append(Global.test)
 
   data = raw.map(function(o) {
     var newObj = o,
@@ -108,7 +124,7 @@ function ready(error, raw) {
   }).join(' ')
 
   var currentBlurb = -1
-  var lineData = d3.wordwrap(Global.allText, 130)
+  var lineData = d3.wordwrap(Global.allText, 125)
     .map(function(str) {
       var returnArray = str.split("~").map(function(str, i) {
         return [i + currentBlurb, str]
@@ -238,10 +254,10 @@ function itemMouseover(d, i) {
   d3.select(".large-date").text(d.date)
   d3.select(".large-date").transition().duration(750).attr('opacity', 1)
 
-  var scaleFactor = 1.19
+  var scaleFactor = 1.2
   var translateFactor = (scaleFactor - 1) * -470
 
-  var howFarDownToShift = 0- (i *23)
+  var howFarDownToShift = i *-25
   d3.select('.text-group')
     .transition().duration(750)
     .attr("transform","translate("+translateFactor+","+howFarDownToShift+") scale("+scaleFactor+","+scaleFactor+")")
@@ -261,10 +277,10 @@ function itemMouseover(d, i) {
 }
 
 function itemMouseout(d, i) {
-  var dur = 1500
+  var dur = 2500
 
-  d3.select(".large-date").transition().duration(dur).delay(500).attr('opacity', 0)
-  d3.select('.text-group').transition().duration(dur).delay(500).attr("transform", "translate(0,0) scale(1,1)")
+  d3.select(".large-date").transition().duration(dur).delay(750).attr('opacity', 0)
+  d3.select('.text-group').transition().duration(dur).delay(750).attr("transform", "translate(0,0) scale(1,1)")
 
   // d3.selectAll('.blurb-tspan').transition()
 
@@ -273,7 +289,7 @@ function itemMouseout(d, i) {
   // .attr('fill',"blue")
 
   d3.selectAll('.blurb-tspan')
-    .transition().delay(500).duration(dur)
+    .transition().delay(750).duration(dur)
     // .attr('opacity',.5)
     .attr('fill', "#DFDFDF")
     // d3.select('.text-group').transition().attr("transform","scale(1,1)")
