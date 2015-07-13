@@ -26,14 +26,14 @@
         margin-left:auto;
         margin-right:auto;
         display:block;
-        /*border: 1px solid red;*/
+        border: 1px solid red;
       }
 
       .link-svg{
         margin-left:auto;
         margin-right:auto;
         display:block;
-        /*border: 1px solid blue;*/
+        border: 1px solid blue;
       }      
 
       .all-text{
@@ -70,10 +70,29 @@
       <div class="page-header">
         <h1 class="title">Bernie Viz</h1>
       </div>
-      <div class='d3-container'></div>
+      <div class='d3-container'>
+        <svg class="main-svg" width="960" height="500">
+        <defs>
+            <linearGradient id="solids" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+              <stop offset="33%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+              <stop offset="33%" style="stop-color:rgb(0,255,0);stop-opacity:1" />
+              <stop offset="67%" style="stop-color:rgb(0,255,0);stop-opacity:1" />
+              <stop offset="67%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+              <stop offset="100%" style="stop-color:rgb(0,0,255);stop-opacity:1" />
+            </linearGradient>
+          </defs>
+          <g transform="translate(10,20)">
+
+          
+        </g></svg>
+
+
+      </div>
 <svg class="link-svg" width="960" height="200">
 <g class="bernie-link">
-  <g id="swish-bottom" fill="red">
+  <g class="swish-bottom" fill="red">
+
     <path d="M480,146.5c0,0-1.8-0.4-5.1-1.1c-1.7-0.4-3.7-0.7-6.1-1.2c-2.4-0.4-5.2-0.9-8.3-1.4
       c-6.2-1.1-13.8-2-22.5-3c-8.7-1-18.6-1.8-29.3-2.4c-10.7-0.6-22.4-1-34.7-1.3c-6.2-0.1-12.5-0.1-19-0.1c-6.5,0-13.1,0.1-19.8,0.2
       c-13.4,0.3-27.3,0.7-41.4,1.5c-14.1,0.7-28.4,1.6-42.7,2.7c-7.2,0.6-14.3,1.2-21.4,1.8c-7.1,0.6-14.2,1.3-21.3,2
