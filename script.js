@@ -389,6 +389,8 @@ function addArrows(){
 
 function itemMouseover(d, i) {
   console.log(i)
+
+  var dur = 750
     // d3.select(".large-date").text(d.date)
     // d3.select(".large-date").transition().duration(750).attr('opacity', 1)
 
@@ -397,22 +399,22 @@ function itemMouseover(d, i) {
 
   var howFarDownToShift = i * -25
   d3.select('.text-group')
-    .transition().duration(750)
+    .transition().duration(dur)
     .attr("transform", "translate(" + translateFactor + "," + howFarDownToShift + ") scale(" + scaleFactor + "," + scaleFactor + ")")
     // .attr("transform", "translate(0," + howFarDownToShift + ") scale(1," + scaleFactor + ")")
 
 
-  d3.selectAll('.arrow').transition().duration(750).attr("fill-opacity",0)
-  d3.selectAll('.arrow-text').transition().duration(750).attr("opacity",0)
+  d3.selectAll('.arrow').transition().duration(dur).attr("fill-opacity",0)
+  d3.selectAll('.arrow-text').transition().duration(dur).attr("opacity",0)
 
   d3.selectAll('.blurb-tspan').attr('fill', '#EFEFEF')
 
   d3.selectAll('.blurb-tspan:not(.blurb-' + i + ')')
-    .transition().duration(750)
+    .transition().duration(dur)
     .attr('fill', '#EFEFEF') //Light Grey
 
   d3.selectAll('.blurb-' + i)
-    .transition().duration(750)
+    .transition().duration(dur)
     // .attr('opacity',1)
     .attr('fill', "red")
 }
