@@ -28,21 +28,29 @@ window.onload = function() {
 
 function donateMouseover() {
   d3.selectAll('.donate')
+  .transition()
+  .duration(200)
     .attr("fill", "red")
 }
 
 function donateMouseout() {
   d3.selectAll('.donate')
+    .transition()
+    .duration(100)
     .attr("fill", "black")
 }
 
 function redditMouseover() {
   d3.selectAll('.reddit')
+    .transition()
+    .duration(200)  
     .attr("fill", "red")
 }
 
 function redditMouseout() {
   d3.selectAll('.reddit')
+    .transition()
+    .duration(100)  
     .attr("fill", "black")
 }
 
@@ -54,7 +62,8 @@ function addPanes() {
     .attr("height", 100)
     .attr("width", 280)
     .attr("fill", "red")
-    .attr("opacity", .5)
+    .attr("opacity", 0)
+    .attr("cursor", "pointer")
     .on("mouseover", donateMouseover)
     .on("mouseout", donateMouseout)
 
@@ -64,30 +73,31 @@ function addPanes() {
     .attr("height", 100)
     .attr("width", 280)
     .attr("fill", "red")
-    .attr("opacity", .5)
+    .attr("opacity", 0)
+    .attr("cursor", "pointer")
     .on("mouseover", redditMouseover)
     .on("mouseout", redditMouseout)
 
 
 }
 
-function modifyBernieLink() {
+function addLinkDescriptions() {
   var svg = d3.select('.main-svg')
-  d3.select('.bernie-link')
-    .attr("transform", "translate(100,50) scale(.6.6)")
+  // d3.select('.bernie-link')
+    // .attr("transform", "translate(100,50) scale(.5.5)")
 
   svg.append("text")
-    .attr("class", "donate")
-    .attr("x", 100)
+    .attr("class", "donate bottom-text")
+    .attr("x", 110)
     .attr("y", 490)
     .text("Donate to Bernie")
 
 
   svg.append("text")
-    .attr("class", "reddit")
-    .attr("x", 450 + 150)
+    .attr("class", "reddit bottom-text")
+    .attr("x", 450 + 140)
     .attr("y", 490)
-    .text("Get Your Bernie news")
+    .text("Get Your Bernie News")
 
 
 }
@@ -97,7 +107,7 @@ function addRedditLink() {
 
   var text = svg.append("text")
     .attr("class", "reddit")
-    .attr("x", 480 + 180)
+    .attr("x", 500 + 180)
     .attr("y", 535)
 
   text.append("tspan")
@@ -110,8 +120,8 @@ function addRedditLink() {
 
 
   text.append("tspan")
-    .attr("class", "reddit")
-    .attr("x", 480 + 100)
+    .attr("class", "reddit bottom-text")
+    .attr("x", 500 + 100)
     .attr("dy", 30)
     .attr('font-size', '24px')
     .text("/r/SandersForPresident")
@@ -123,10 +133,10 @@ function loadSandersLogo() {
     Global.test = d3.select(xml.documentElement).select(".logo")
     document.querySelector('.main-svg').appendChild(xml.documentElement);
     d3.select('.bernie-svg')
-      .attr('x', 100)
-      .attr('y', 500)
+      .attr('x', 150)
+      .attr('y', 490)
     d3.select('.logo')
-      .attr("transform", "scale(.5,.5)")
+      .attr("transform", "scale(.4,.4)")
     addPanes()
   });
 }
@@ -289,7 +299,7 @@ function ready(error, raw) {
     .on("mouseover", itemMouseover)
     .on("mouseout", itemMouseout)
 
-  modifyBernieLink()
+  addLinkDescriptions()
   addRedditLink()
 
 }
@@ -329,7 +339,7 @@ function itemMouseout(d, i) {
   d3.select('.text-group').transition().duration(dur).delay(750).attr("transform", "translate(0,0) scale(1,1)")
   d3.selectAll('.blurb-tspan')
     .transition().delay(750).duration(dur)
-    .attr('fill', "#DFDFDF")
+    .attr('fill', "#EFEFEF")
 }
 
 function getMonthFromString(mon) {
