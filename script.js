@@ -34,6 +34,8 @@ window.onload = function() {
 
     d3.select('.logo')
     .attr("transform","scale(.5,.5)")
+
+    addPanes()
     // .attr('width',100)
     // d3.select('body').append(xml.documentElement);
 
@@ -42,20 +44,68 @@ window.onload = function() {
 
 }
 
+function donateMouseover(){
+  d3.selectAll('.donate')
+  .attr("fill","red")
+}
+
+function donateMouseout(){
+  d3.selectAll('.donate')
+  .attr("fill","black")
+}
+
+function redditMouseover(){
+  d3.selectAll('.reddit')
+  .attr("fill","red")
+}
+
+function redditMouseout(){
+  d3.selectAll('.reddit')
+  .attr("fill","black")
+}
+
+function addPanes(){
+  var svg = d3.select('.main-svg')
+  svg.append("rect")
+  .attr("x",100)
+  .attr("y",475)
+  .attr("height",100)
+  .attr("width",280)
+  .attr("fill","red")
+  .attr("opacity",.5)
+  .on("mouseover", donateMouseover)
+  .on("mouseout", donateMouseout)   
+
+  svg.append("rect")
+  .attr("x",580)
+  .attr("y",475)
+  .attr("height",100)
+  .attr("width",280)
+  .attr("fill","red")
+  .attr("opacity",.5)
+  .on("mouseover", redditMouseover)
+  .on("mouseout", redditMouseout)    
+ 
+
+}
 function modifyBernieLink(){
   var svg = d3.select('.main-svg')
   d3.select('.bernie-link')
   .attr("transform","translate(100,50) scale(.6.6)")
 
   svg.append("text")
+  .attr("class", "donate")
   .attr("x", 100)
-  .attr("y", 30)
+  .attr("y", 490)
   .text("Donate to Bernie")
 
+
   svg.append("text")
-  .attr("x",450 + 100)
-  .attr("y", 30)
-  .text("Best place for Bernie news")  
+  .attr("class", "reddit")
+  .attr("x",450 + 150)
+  .attr("y", 490)
+  .text("Get Your Bernie news")
+
 
 }
 
@@ -63,18 +113,21 @@ function addRedditLink() {
   var svg = d3.select('.main-svg')
 
   var text = svg.append("text")
-    .attr("x", 450 + 280)
-    .attr("y", 500)
+    .attr("class", "reddit")
+    .attr("x", 480 + 180)
+    .attr("y", 535)
 
     text.append("tspan")
+    .attr("class", "reddit")
     .attr('font-family', 'FontAwesome')
     .attr('font-size', '48px')
     .text(function(d) { return  '\uf1a1' })
 
 
     text.append("tspan")
-    .attr("x", 450 + 200)
-    .attr("dy",40)
+    .attr("class", "reddit")
+    .attr("x", 480 + 100)
+    .attr("dy",30)
     .attr('font-size', '24px')
     .text("/r/SandersForPresident")
     
@@ -235,24 +288,25 @@ function ready(error, raw) {
     .on("mouseover", itemMouseover)
     .on("mouseout", itemMouseout)
 
-  svg.append("text")
-    .attr("class", "large-date")
-    .attr("x", 200)
-    .attr("y", 200)
-    .attr("opacity", 0)
-    .text("")
+  // svg.append("text")
+  //   .attr("class", "large-date")
+  //   .attr("x", 200)
+  //   .attr("y", 200)
+  //   .attr("opacity", 0)
+  //   .text("")
 
 
   modifyBernieLink()
   addRedditLink()
+
 }
 
 
 
 function itemMouseover(d, i) {
   console.log(i)
-  d3.select(".large-date").text(d.date)
-  d3.select(".large-date").transition().duration(750).attr('opacity', 1)
+  // d3.select(".large-date").text(d.date)
+  // d3.select(".large-date").transition().duration(750).attr('opacity', 1)
 
   var scaleFactor = 1.2
   var translateFactor = (scaleFactor - 1) * -470
@@ -279,7 +333,7 @@ function itemMouseover(d, i) {
 function itemMouseout(d, i) {
   var dur = 2500
 
-  d3.select(".large-date").transition().duration(dur).delay(750).attr('opacity', 0)
+  // d3.select(".large-date").transition().duration(dur).delay(750).attr('opacity', 0)
   d3.select('.text-group').transition().duration(dur).delay(750).attr("transform", "translate(0,0) scale(1,1)")
 
   // d3.selectAll('.blurb-tspan').transition()
