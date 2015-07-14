@@ -1,5 +1,6 @@
 window.onload = function() {
   Global = {}
+  Global.navyBlue = "#001F3F"
   var file = "data.json"
 
   d3.json(file, ready)
@@ -159,7 +160,7 @@ function ready(error, raw) {
       year = o.date.split(" ")[1],
       dateValue = getMonthFromString(month) + ((year - 1981) * 12)
     newObj.dateValue = dateValue
-    newObj.blurb = newObj.date + " -- " + newObj.blurb
+    newObj.blurb = newObj.date + " — " + newObj.blurb
     return newObj
   })
   data.forEach(function(o) {
@@ -313,8 +314,8 @@ function addArrows(){
   //Arrow 1
   var arrow1 = svg.append("g")
   .attr("transform","translate(475,340) scale(-.3,.3) rotate(-35)")
-  arrow1.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1)
-  arrow1.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1)
+  arrow1.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1).attr("fill",Global.navyBlue)
+  arrow1.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1).attr("fill",Global.navyBlue)
 
   svg.append("text")
   .attr("class","arrow-text")
@@ -336,8 +337,8 @@ function addArrows(){
 
   var arrow2 = svg.append("g")
   .attr("transform","translate(595,360) scale(-.3,.4) rotate(-65)")
-  arrow2.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1)
-  arrow2.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1)
+  arrow2.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1).attr("fill",Global.navyBlue)
+  arrow2.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1).attr("fill",Global.navyBlue)
 
   svg.append("text")
   .attr("class","arrow-text")
@@ -359,8 +360,8 @@ function addArrows(){
 
   var arrow3 = svg.append("g")
   .attr("transform","translate(690,390) scale(-.2,-.2) rotate(90)")
-  arrow3.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1)
-  arrow3.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1)
+  arrow3.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1).attr("fill",Global.navyBlue)
+  arrow3.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1).attr("fill",Global.navyBlue)
 
   svg.append("text")
   .attr("class","arrow-text")
