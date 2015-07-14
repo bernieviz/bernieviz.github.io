@@ -24,22 +24,7 @@ window.onload = function() {
   Global.xScale = d3.scale.linear()
     .range([0, width])
   
-  d3.xml("sanders-logo.svg", "image/svg+xml", function(xml) {
-    // console.log(xml)
-    Global.test = d3.select(xml.documentElement).select(".logo")
-    document.querySelector('.main-svg').appendChild(xml.documentElement);
-    d3.select('.bernie-svg')
-    .attr('x',100)
-    .attr('y',500)
 
-    d3.select('.logo')
-    .attr("transform","scale(.5,.5)")
-
-    addPanes()
-    // .attr('width',100)
-    // d3.select('body').append(xml.documentElement);
-
-  });
 
 
 }
@@ -140,6 +125,17 @@ function ready(error, raw) {
   var margin = Global.margin
   var xScale = Global.xScale
 
+
+  d3.xml("sanders-logo.svg", "image/svg+xml", function(xml) {
+    Global.test = d3.select(xml.documentElement).select(".logo")
+    document.querySelector('.main-svg').appendChild(xml.documentElement);
+    d3.select('.bernie-svg')
+    .attr('x',100)
+    .attr('y',500)
+    d3.select('.logo')
+    .attr("transform","scale(.5,.5)")
+    addPanes()
+  });
   // svg.append(Global.test)
 
   data = raw.map(function(o) {
