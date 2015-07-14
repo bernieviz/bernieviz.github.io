@@ -301,9 +301,90 @@ function ready(error, raw) {
 
   addLinkDescriptions()
   addRedditLink()
+  addArrows()
 
 }
 
+function addArrows(){
+  var svg = d3.select('.main-svg')
+  var arrowData1 = "m178.61995,74.45496c-1.12671,1.28741 -2.29224,2.54189 -3.38013,3.8623c-1.58911,1.9288 -3.09601,3.92395 -4.64841,5.88245c-10.64856,13.43399 -21.09245,27.0051 -31.45738,40.65945c-15.99654,21.81946 -33.41106,42.56458 -49.20676,64.52814c-3.93378,5.94672 -8.25975,11.69647 -11.61659,18.01025c-0.64124,1.20612 -1.8586,3.78162 -2.1133,5.37885c-0.0195,0.12366 0.15247,0.19849 0.22868,0.29779c0.29465,-2.88458 1.94606,-3.19031 4.59108,-3.8573c1.52863,-0.3855 3.07034,-0.71875 4.61446,-1.03656c4.64778,-0.9566 10.41557,-1.94629 14.97403,-2.75964c3.79562,-0.4796 7.57953,-1.06342 11.38687,-1.43889c10.80692,-1.06572 20.79662,-1.48988 31.70148,-1.78314c21.08203,-0.56703 42.13545,-0.23683 63.21521,0.1848c20.51335,0.47107 41.0166,1.1714 61.53075,1.60101c0,0 -28.74747,14.03601 -28.74747,14.03601l0,0c-19.48738,-1.41046 -38.9859,-2.82513 -58.53592,-2.96698c-7.44397,-0.07831 -14.88754,-0.26636 -22.33188,-0.23474c-30.83572,0.1308 -61.89294,1.80719 -92.12032,8.23309c-8.88686,2.12604 -9.69635,2.25085 -17.79517,4.41223c-1.87392,0.50012 -3.72751,1.07617 -5.60779,1.55188c-2.20781,0.55853 -5.21103,1.7926 -7.4614,0.159c-0.87732,-0.6369 -1.16547,-1.82837 -1.74818,-2.74255c0.0387,-0.84082 -0.14177,-1.72124 0.11609,-2.52246c0.43294,-1.34528 3.86528,-6.09752 4.31339,-6.70331c4.82704,-6.52515 10.23705,-12.59215 15.11526,-19.07805c17.49657,-21.63226 36.51256,-42.07129 52.16693,-65.1526c8.05037,-11.63525 7.84068,-11.15862 15.29019,-22.56551c2.54552,-3.89774 7.85654,-12.11369 10.36699,-16.49931c2.26007,-3.94815 2.72868,-5.18436 4.37904,-8.88132c0,0 42.7802,-10.57486 42.7802,-10.57486l0.00003,0l-0.00003,-0.00001l0.00003,0l0.00002,-0.00001l0,-0.00001z"
+  var arrowData2 = "m216.80315,134.1174c11.54861,-3.41785 23.0368,-7.02405 34.63861,-10.25781c33.08061,-10.82678 67.19353,-18.02524 101.24666,-25.00671c8.00494,-1.43826 15.99866,-2.94022 24.01477,-4.31474c18.24658,-3.12868 32.25012,-5.32626 50.63336,-7.69226c24.54211,-3.1586 49.16537,-5.45615 73.81229,-7.59073c29.40659,-2.3721 58.93503,-2.79227 88.42392,-2.97339c0,0 -68.1037,32.99615 -68.1037,32.99615l0,0c-2.84412,-0.563 -5.66864,-1.23615 -8.53235,-1.68896c-20.927,-3.3091 -42.21017,-3.04282 -63.3197,-2.44281c-7.08005,0.34357 -14.16681,0.56784 -21.24005,1.0307c-41.95801,2.74573 -83.62564,9.05695 -124.65363,18.21368c-8.20551,1.97229 -16.43561,3.84503 -24.61652,5.91687c-31.14796,7.88837 -61.82671,17.47974 -92.20038,27.93469c-11.09906,3.86835 -22.16684,7.79828 -33.1821,11.89972c-1.49948,0.55835 -10.56439,4.00853 -12.75664,4.78589c-1.19374,0.42328 -2.40681,0.78986 -3.61021,1.1848c0,0 79.44563,-41.99512 79.44563,-41.99512l0.00003,0l0,0.00002l0,0.00003l0,-0.00002z"
+
+  //Arrow 1
+  var arrow1 = svg.append("g")
+  .attr("transform","translate(475,340) scale(-.3,.3) rotate(-35)")
+  arrow1.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1)
+  arrow1.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1)
+
+  svg.append("text")
+  .attr("class","arrow-text")
+  .attr("opacity",1)
+  .attr("x",120)
+  .attr("y",180)
+  .attr("font-size",24)
+  .append("tspan")
+  .text("July 1996 —")
+  .append("tspan")
+  .attr("x",120)
+  .attr("dy",35)
+  .text("Sanders votes against the")
+  .append("tspan")
+  .attr("x",120)
+  .attr("dy",35)
+  .text("Defense of Marriage Act")
+
+
+  var arrow2 = svg.append("g")
+  .attr("transform","translate(595,360) scale(-.3,.4) rotate(-65)")
+  arrow2.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1)
+  arrow2.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1)
+
+  svg.append("text")
+  .attr("class","arrow-text")
+  .attr("opacity",1)
+  .attr("x",300)
+  .attr("y",80)
+  .attr("font-size",24)
+  .append("tspan")
+  .text("November 1999 —")
+  .append("tspan")
+  .attr("x",300)
+  .attr("dy",35)
+  .text("Sanders votes against")
+  .append("tspan")
+  .attr("x",300)
+  .attr("dy",35)
+  .text("repealing Glass Steagall")
+
+
+  var arrow3 = svg.append("g")
+  .attr("transform","translate(690,390) scale(-.2,-.2) rotate(90)")
+  arrow3.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1)
+  arrow3.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1)
+
+  svg.append("text")
+  .attr("class","arrow-text")
+  .attr("opacity",1)
+  .attr("x",600)
+  .attr("y",150)
+  .attr("font-size",24)
+  .append("tspan")
+  .text("December 2007 —")
+  .append("tspan")
+  .attr("x",600)
+  .attr("dy",35)
+  .text("Sanders’ authored energy")
+  .append("tspan")
+  .attr("x",600)
+  .attr("dy",35)
+  .text("efficiency and conservation")
+  .append("tspan")
+  .attr("x",600)
+  .attr("dy",35)
+  .text("grant program passes into law")  
+
+
+}
 
 
 function itemMouseover(d, i) {
@@ -321,7 +402,10 @@ function itemMouseover(d, i) {
     // .attr("transform", "translate(0," + howFarDownToShift + ") scale(1," + scaleFactor + ")")
 
 
-  d3.selectAll('.blurb-tspan').attr('fill', '#DFDFDF')
+  d3.selectAll('.arrow').transition().duration(750).attr("fill-opacity",0)
+  d3.selectAll('.arrow-text').transition().duration(750).attr("opacity",0)
+
+  d3.selectAll('.blurb-tspan').attr('fill', '#EFEFEF')
 
   d3.selectAll('.blurb-tspan:not(.blurb-' + i + ')')
     .transition().duration(750)
@@ -340,6 +424,9 @@ function itemMouseout(d, i) {
   d3.selectAll('.blurb-tspan')
     .transition().delay(750).duration(dur)
     .attr('fill', "#EFEFEF")
+
+  d3.selectAll('.arrow').transition().delay(2000).duration(750).attr('fill-opacity', 1)    
+  d3.selectAll('.arrow-text').transition().delay(2000).duration(750).attr('opacity', 1)    
 }
 
 function getMonthFromString(mon) {
