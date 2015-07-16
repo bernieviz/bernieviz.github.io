@@ -101,6 +101,7 @@
       .attr('y', 30)
     d3.select('.logo')
       .attr("transform", "scale(.4,.4)")
+      .attr("fill", "#001F3F")
     addLinkDescriptions()
     addRedditLink()
     addPanes()
@@ -174,7 +175,7 @@ function addLinkDescriptions() {
     .attr("class", "reddit bottom-text")
     .attr("x", 450 + 140)
     .attr("y", 30)
-    .text("Get Your Bernie News")
+    .text("Get Bernie News")
 
 
 }
@@ -185,6 +186,8 @@ function addRedditLink() {
     .attr("class", "reddit")
     .attr("x", 500 + 180)
     .attr("y", 75)
+    .attr("fill", "#001F3F")
+
 
   text.append("tspan")
     .attr("class", "reddit")
@@ -253,7 +256,7 @@ function addRedditLink() {
     </div>
 
     <footer class="footer">
-      <div class="container">
+      <div class="container" style="font-family:Raleway">
         <p class="text-muted"><span>Made with <a href="http://d3js.org/">D3JS</a> and a little <a href="http://getbootstrap.com/2.3.2/">Bootstrap</a>.
         </span>
         <span style="float:right; margin-right: 30px">
