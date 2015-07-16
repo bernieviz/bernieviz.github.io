@@ -296,6 +296,8 @@ function ready(error, raw) {
     })
     .attr('cy', timeline.y)
     .attr('r', 5)
+    .attr("fill","white")
+    .attr("stroke","black")
 
     .on("mouseover", itemMouseover)
     .on("mouseout", itemMouseout)
@@ -387,13 +389,41 @@ function addArrows(){
 
 }
 
+function makeRing(selector,xVal){
+
+  var attrs = {
+    cx: xVal+10,
+    cy: 410,
+    r: 5,
+    fill:"black",
+    stroke: "black",
+    "opacity": 0.4,
+    "fill-opacity":0.8,
+  }  
+
+  // selector.select("circle")
+  // .attr("fill","red")
+
+  selector
+  .insert("circle",":first-child")
+  .attr(attrs)
+  .transition()
+  .duration(750)
+  .attr("r",10)
+  .attr("opacity", 0)
+  .remove()
+
+}
+
 
 function itemMouseover(d, i) {
-  console.log(i)
+  d3.select(this).attr("fill","#85144B") // maroon 
+  var xVal  = Global.xScale(d.dateValue) 
+  console.log("d",Global.xScale(d.dateValue))
+  var selector = d3.select(this.parentNode)
+  makeRing(selector,xVal)
 
   var dur = 750
-    // d3.select(".large-date").text(d.date)
-    // d3.select(".large-date").transition().duration(750).attr('opacity', 1)
 
   var scaleFactor = 1.2
   var translateFactor = (scaleFactor - 1) * -470
@@ -417,10 +447,12 @@ function itemMouseover(d, i) {
   d3.selectAll('.blurb-' + i)
     .transition().duration(dur)
     // .attr('opacity',1)
-    .attr('fill', "red")
+    .attr('fill', "#85144B") //maroon
+
 }
 
 function itemMouseout(d, i) {
+  d3.select(this).attr("fill","white")
   var dur = 2500
 
   d3.select('.text-group').transition().duration(dur).delay(750).attr("transform", "translate(0,0) scale(1,1)")
