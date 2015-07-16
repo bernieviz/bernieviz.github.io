@@ -30,29 +30,29 @@ window.onload = function() {
 function donateMouseover() {
   d3.selectAll('.donate')
   .transition()
-  .duration(200)
-    .attr("fill", "red")
+  .duration(250)
+    .attr("fill", "#0074D9")
 }
 
 function donateMouseout() {
   d3.selectAll('.donate')
     .transition()
     .duration(100)
-    .attr("fill", "black")
+    .attr("fill", "#001F3F")
 }
 
 function redditMouseover() {
   d3.selectAll('.reddit')
     .transition()
-    .duration(200)  
-    .attr("fill", "red")
+    .duration(250)  
+    .attr("fill", "#0074D9")
 }
 
 function redditMouseout() {
   d3.selectAll('.reddit')
     .transition()
     .duration(100)  
-    .attr("fill", "black")
+    .attr("fill", "#001F3F")
 }
 
 function addPanes() {
@@ -91,6 +91,7 @@ function addLinkDescriptions() {
     .attr("class", "donate bottom-text")
     .attr("x", 110)
     .attr("y", 490)
+    .attr("fill","#001F3F")
     .text("Donate to Bernie")
 
 
