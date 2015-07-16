@@ -78,8 +78,6 @@ function addPanes() {
     .attr("cursor", "pointer")
     .on("mouseover", redditMouseover)
     .on("mouseout", redditMouseout)
-
-
 }
 
 function addLinkDescriptions() {

@@ -50,7 +50,7 @@
         margin-left:auto;
         margin-right:auto;
         display:block;
-        border: 1px solid blue;
+        /*border: 1px solid blue;*/
       }
 
 
@@ -92,6 +92,118 @@
 
   </style>
   </head>
+  <script>
+    d3.xml("sanders-logo.svg", "image/svg+xml", function(xml) {
+    d3.select(xml.documentElement).select(".logo")
+    document.querySelector('.link-svg').appendChild(xml.documentElement);
+    d3.select('.bernie-svg')
+      .attr('x', 150)
+      .attr('y', 30)
+    d3.select('.logo')
+      .attr("transform", "scale(.4,.4)")
+    addLinkDescriptions()
+    addRedditLink()
+    addPanes()
+  });
+function addPanes() {
+  var svg = d3.select('.link-svg')
+  svg.append("rect")
+    .attr("x", 100)
+    .attr("y", 15)
+    .attr("height", 100)
+    .attr("width", 280)
+    .attr("fill", "red")
+    .attr("opacity", 0)
+    .attr("cursor", "pointer")
+    .on("mouseover", donateMouseover)
+    .on("mouseout", donateMouseout)
+
+  svg.append("rect")
+    .attr("x", 580)
+    .attr("y", 15)
+    .attr("height", 100)
+    .attr("width", 280)
+    .attr("fill", "red")
+    .attr("opacity", 0)
+    .attr("cursor", "pointer")
+    .on("mouseover", redditMouseover)
+    .on("mouseout", redditMouseout)
+}
+function donateMouseover() {
+  d3.selectAll('.donate')
+  .transition()
+  .duration(250)
+    .attr("fill", "#7F7F7F")
+}
+
+function donateMouseout() {
+  d3.selectAll('.donate')
+    .transition()
+    .duration(100)
+    .attr("fill", "#001F3F")
+}
+
+function redditMouseover() {
+  d3.selectAll('.reddit')
+    .transition()
+    .duration(250)  
+    .attr("fill", "#7F7F7F")
+}
+
+function redditMouseout() {
+  d3.selectAll('.reddit')
+    .transition()
+    .duration(100)  
+    .attr("fill", "#001F3F")
+}
+
+function addLinkDescriptions() {
+  var svg = d3.select('.link-svg')
+  // d3.select('.bernie-link')
+    // .attr("transform", "translate(100,50) scale(.5.5)")
+
+  svg.append("text")
+    .attr("class", "donate bottom-text")
+    .attr("x", 110)
+    .attr("y", 30)
+    .attr("fill","#001F3F")
+    .text("Donate to Bernie")
+
+
+  svg.append("text")
+    .attr("class", "reddit bottom-text")
+    .attr("x", 450 + 140)
+    .attr("y", 30)
+    .text("Get Your Bernie News")
+
+
+}
+function addRedditLink() {
+  var svg = d3.select('.link-svg')
+
+  var text = svg.append("text")
+    .attr("class", "reddit")
+    .attr("x", 500 + 180)
+    .attr("y", 75)
+
+  text.append("tspan")
+    .attr("class", "reddit")
+    .attr('font-family', 'FontAwesome')
+    .attr('font-size', '48px')
+    .text(function(d) {
+      return '\uf1a1'
+    })
+
+
+  text.append("tspan")
+    .attr("class", "reddit bottom-text")
+    .attr("x", 500 + 100)
+    .attr("dy", 30)
+    .attr('font-size', '24px')
+    .text("/r/SandersForPresident")
+
+}
+  </script>
   <body cz-shortcut-listen="true">
 
     <!-- Fixed navbar -->
@@ -103,9 +215,9 @@
 <!--             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             </button> -->
             <a class="navbar-brand" href="/">BernieViz</a>
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav" style="font-family:Raleway">
             <li><a href="/">Timeline</a></li>
-            <li class="active"><a href="#about">More to Come...</a></li>
+            <li class="active"><a href="">More to Come...</a></li>
 
           </ul>
           </div>
@@ -117,10 +229,26 @@
 
     <!-- Begin page content -->
     <div class="container">
-      <div class="page-header">
+      <div class="page-header" style="margin-bottom:0px">
         <h1 class="title">FAQ</h1>
       </div>
-    hi
+        <div class='d3-container'>
+          <p>
+            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+          </p>
+          <p>
+            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+          </p>
+          <p>
+            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+          </p>
+          <p>
+            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+          </p>      
+          <svg class="link-svg" width="960" height="150"></svg>
+
+
+        </div>
 
     </div>
 
