@@ -39,11 +39,19 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Cinzel|Enriqueta|News+Cycle|Crimson+Text|Oswald|Open+Sans|Pontano+Sans|Open+Sans+Condensed|Droid+Sans|Questrial|Merriweather+Sans|Raleway|Holtwood+One+SC|Slabo|Cutive+Mono|Droid+Sans+Mono">
 
   <style type="text/css">
-      .main-svg{
+      .main-div{
         margin-left:auto;
         margin-right:auto;
         display:block;
-        /*border: 1px solid red;*/
+        max-width: 960px;
+        font-family: Droid Sans;
+        color:#001F3F;
+        font-size:14px;
+      }
+
+      .question{
+        color:#EE3233;
+        font-size:16px;
       }
 
       .link-svg{
@@ -86,6 +94,10 @@
         font-family:Raleway;
       }
 
+      .faq-text{
+      }
+
+      /*EE3233*/
 /*      .arrow-path{
         fill:#001F3F;
       }*/
@@ -225,7 +237,7 @@ function addRedditLink() {
           <div class="navbar-header title">
 <!--             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             </button> -->
-            <a class="navbar-brand" href="/">BernieViz</a>
+            <a class="navbar-brand" href="/" style="color:#001F3F">BernieViz</a>
             <ul class="nav navbar-nav" style="font-family:Raleway">
             <li><a href="/">Timeline</a></li>
             <li class="active"><a href="">More to Come...</a></li>
@@ -240,22 +252,40 @@ function addRedditLink() {
 
     <!-- Begin page content -->
     <div class="container">
-      <div class="page-header" style="margin-bottom:0px">
+      <div class="page-header" >
         <h1 class="title">FAQ</h1>
       </div>
-        <div class='d3-container'>
+        <div class='main-div' style="max-width:960px">
           <p>
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+          <span class="question">What is this?</span><br>
+
+          BernieViz intends to show data and information about Bernie Sanders in compelling ways.  As long as Bernie's in the race, I plan to keep this going.
+        </p>
+        <p>
+          <span class="question">Why?</span><br>
+
+          My two current interests are Bernie Sanders and data visualization, so in the spirit of Reese's Peanut Butter Cups, I decided to combine them.
+        </p>
+        <p>
+          <span class="question">What's next?</span> <br>
+          I have a couple of vague ideas but would love input.
+          <ul>
+          <li>Something that uses <a href="https://www.govtrack.us/">GovTrack.us</a> to show Bernie's voting history</li>
+          <li>Something comparing donations of candidates (size/number of donations and/or characteristics of donors)</li>
+          </ul>
+        </p>
+        <p>
+          <span class="question">How can I help?</span><br>
+          I would be thrilled to have help from the community.  The easiest ways are:
+          <ul>
+           <li>Ideas for visualizations</li>
+           <li>Data, or data sources.  This can come in any format (XML, a table on a website, etc.) as long as the data's public</li>
+           <li>Feedback</li>
+           <li>Share it</li>
+          </ul>
+          Contact me at <a href="mailto:berniesandersviz@gmail.com">berniesandersviz@gmail.com</a>
           </p>
-          <p>
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-          </p>
-          <p>
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-          </p>
-          <p>
-            "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
-          </p>      
+                  
           <svg class="link-svg" width="960" height="150"></svg>
 
 
