@@ -67,6 +67,10 @@ function addPanes() {
     .attr("cursor", "pointer")
     .on("mouseover", donateMouseover)
     .on("mouseout", donateMouseout)
+    .on("click",function(d){
+      var url = "https://berniesanders.com/"
+      window.location.href = url
+    })
 
   svg.append("rect")
     .attr("x", 580)
@@ -78,6 +82,10 @@ function addPanes() {
     .attr("cursor", "pointer")
     .on("mouseover", redditMouseover)
     .on("mouseout", redditMouseout)
+    .on("click",function(d){
+      var url = "https://www.reddit.com/r/sandersforpresident"
+      window.location.href = url
+    })
 }
 
 function addLinkDescriptions() {
@@ -261,6 +269,42 @@ function ready(error, raw) {
   .attr("width",width+20)
   .attr("transform", " translate(0," + 405+ ")")
 
+  
+
+  svg.append("text").attr("x",0).attr("y",400).attr("class","position")
+  .attr("fill","black")
+  .attr("stroke","black")
+  .attr("stroke-width",.5)  
+  .text("1981")
+
+  var x1990 = Global.xScale(108)
+  var x2000 = Global.xScale(228)
+  var x2010 = Global.xScale(348)
+  var x2015 = Global.xScale(408)
+  // svg.append("text").attr("x",x1990).attr("y",400).attr("class","position")
+  // .attr("fill","black")
+  // .attr("stroke","black")
+  // .attr("stroke-width",.5)  
+  // .text("1990")
+
+  // svg.append("text").attr("x",x2000).attr("y",400).attr("class","position")
+  // .attr("fill","black")
+  // .attr("stroke","black")
+  // .attr("stroke-width",.5)  
+  // .text("2000")
+
+  // svg.append("text").attr("x",x2010).attr("y",400).attr("class","position")
+  // .attr("fill","black")
+  // .attr("stroke","black")
+  // .attr("stroke-width",.5)  
+  // .text("2010")
+
+  svg.append("text").attr("x",x2015).attr("y",400).attr("class","position")
+  .attr("fill","black")
+  .attr("stroke","black")
+  .attr("stroke-width",.5)  
+  .text("2015")  
+
   svg.append("text").attr("x",60).attr("y",430).attr("class","position")
   .attr("fill","#A3D6F5")
   .attr("stroke","black")
@@ -370,7 +414,7 @@ function addArrows(){
 
 
   var arrow3 = svg.append("g")
-  .attr("transform","translate(690,390) scale(-.2,-.2) rotate(90)")
+  .attr("transform","translate(695,405) scale(-.2,-.2) rotate(90)")
   arrow3.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1).attr("fill",Global.navyBlue)
   arrow3.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1).attr("fill",Global.navyBlue)
 
@@ -378,7 +422,7 @@ function addArrows(){
   .attr("class","arrow-text")
   .attr("opacity",1)
   .attr("x",600)
-  .attr("y",150)
+  .attr("y",165)
   .attr("font-size",24)
   .append("tspan")
   .text("December 2007 —")

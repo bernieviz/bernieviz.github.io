@@ -118,6 +118,10 @@ function addPanes() {
     .attr("cursor", "pointer")
     .on("mouseover", donateMouseover)
     .on("mouseout", donateMouseout)
+    .on("click",function(d){
+      var url = "https://berniesanders.com/"
+      window.location.href = url
+    })
 
   svg.append("rect")
     .attr("x", 580)
@@ -129,6 +133,10 @@ function addPanes() {
     .attr("cursor", "pointer")
     .on("mouseover", redditMouseover)
     .on("mouseout", redditMouseout)
+    .on("click",function(d){
+      var url = "https://www.reddit.com/r/sandersforpresident"
+      window.location.href = url
+    })
 }
 function donateMouseover() {
   d3.selectAll('.donate')
