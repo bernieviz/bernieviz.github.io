@@ -187,10 +187,7 @@ function ready(error, raw) {
     if (o.dateValue == 404) o.dateValue = 403
     if (o.dateValue == 409) o.dateValue = 408
   })
-  console.log(data.map(function(o) {
-    return o.dateValue
-  }))
-  console.log(data)
+
 
   Global.xScale
     .domain(d3.extent(data, ƒ("dateValue")))
@@ -472,7 +469,6 @@ function makeRing(selector,xVal){
 function itemMouseover(d, i) {
   d3.select(this).attr("fill","#85144B") // maroon 
   var xVal  = Global.xScale(d.dateValue) 
-  console.log("d",Global.xScale(d.dateValue))
   var selector = d3.select(this.parentNode)
   makeRing(selector,xVal)
 
