@@ -375,8 +375,8 @@ function addArrows(){
   svg.append("text")
   .attr("class","arrow-text")
   .attr("opacity",1)
-  .attr("x",120)
-  .attr("y",180)
+  .attr("x",115)
+  .attr("y",175)
   .attr("font-size",24)
   .append("tspan")
   .text("July 1996 —")
@@ -391,7 +391,7 @@ function addArrows(){
 
 
   var arrow2 = svg.append("g")
-  .attr("transform","translate(595,360) scale(-.3,.4) rotate(-65)")
+  .attr("transform","translate(595,370) scale(-.3,.4) rotate(-65)")
   arrow2.append("path.arrow").attr("d",arrowData1).attr("fill-opacity",1).attr("fill",Global.navyBlue)
   arrow2.append("path.arrow").attr("d",arrowData2).attr("fill-opacity",1).attr("fill",Global.navyBlue)
 
@@ -410,7 +410,7 @@ function addArrows(){
   .append("tspan")
   .attr("x",300)
   .attr("dy",35)
-  .text("repealing Glass Steagall")
+  .text("repealing Glass-Steagall")
 
 
   var arrow3 = svg.append("g")
